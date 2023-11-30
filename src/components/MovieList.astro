@@ -1,0 +1,54 @@
+---
+import { URL_IMAGE } from '../helpers/constants';
+import type { Movie } from '../interfaces/Interfaces.ts';
+
+interface Props {
+  movies: Movie[];
+}
+
+const { movies } = Astro.props
+
+---
+
+<h1>Cuevana 4.0</h1>
+  <section class='movies-grid'>
+    {
+      movies.map((movie: Movie) => (
+        <a href={`/details/${movie.id}`}>
+          <img src={`${URL_IMAGE}${movie.poster_path}`} alt={movie.title} title={movie.title}/>
+          <h3>{movie.title}</h3>
+        </a>
+      ))
+    }
+  </section>
+
+  <style>
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+    }
+    .movies-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 1rem;
+      width: 80%;
+      margin: 0 auto;
+    }
+    a {
+      text-align: center;
+      color: white;
+      text-decoration: none;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+    img {
+      width: 100%;
+    }
+    h3 {
+      font-size: 1.1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>

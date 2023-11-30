@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MovieList from '../components/MovieList.astro';
+import { GetData } from '../helpers/getData.ts';
+
+const movies = await GetData.movies();
+---
+
+<Layout title="Cuevana 4.0">
+  <MovieList movies={movies} />
+</Layout>

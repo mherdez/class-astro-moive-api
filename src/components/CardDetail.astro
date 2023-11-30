@@ -1,0 +1,146 @@
+---
+import { URL_IMAGE, ANONIMOUS_IMAGE } from '../helpers/constants';
+import type { Actor, Movie, Video } from '../interfaces/Interfaces';
+
+interface Props {
+  data: Movie;
+  cast: Actor[];
+  videosTrailers: Video[];
+}
+
+const { data, cast, videosTrailers } = Astro.props;
+---
+
+<section class="card">
+  <h1>{data.original_title}</h1>
+  <img class="card-poster" src=`${URL_IMAGE}${data.poster_path}` alt="" />
+  {
+    data.overview ? (
+      <>
+        <h2>Overview</h2>
+        <p class="overview">{data.overview}</p>
+      </>
+    ) : (
+      ''
+    )
+  }
+  <h2>Reparto</h2>
+  <div class="cast">
+    {
+      cast.map((actor: Actor) => (
+        <div class="actor">
+          <img
+            class="actor-photo"
+            src=
+            {
+              actor.profile_path
+              ? `${URL_IMAGE}${actor.profile_path}`
+              : `${ANONIMOUS_IMAGE}`
+            }
+            alt=""
+          />
+          <div class="actor-text">
+            <h5>{actor.name}</h5>
+            <p>{actor.character}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  {
+    videosTrailers.length > 0 ? (
+      <>
+        <div class="trailes">
+          <h2>Trailers</h2>
+          {videosTrailers.map((video: Video) => (
+            <div class="videos">
+              <h3>{video.name}</h3>
+              <iframe
+                src={`https://www.youtube.com/embed/${video.key}`}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              />
+            </div>
+          ))}
+        </div>
+      </>
+    ) : (
+      ''
+    )
+  }
+</section>
+
+<style>
+  .card {
+    text-align: center;
+  }
+  .card h1 {
+    font-size: 3rem;
+  }
+  .trailes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  .overview {
+    width: 80%;
+    margin: 20px auto;
+    text-align: justify;
+    font-size: 1.5rem;
+    border: 1px solid yellow;
+    padding: 20px;
+  }
+  .cast {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    gap: 1rem 0.85rem;
+    box-sizing: border-box;
+  }
+  .actor {
+    text-align: center;
+    border: 2px solid grey;
+  }
+  img {
+    width: 300px;
+  }
+  .actor-photo {
+    width: 120px;
+    aspect-ratio: 1 / 1.5;
+  }
+  .actor h5 {
+    font-size: 0.8rem;
+    margin: 10px 0 5px;
+  }
+  .actor p {
+    font-size: 0.6rem;
+    margin: 0;
+    color: yellow;
+  }
+  .videos {
+    margin: 0 auto;
+  }
+  iframe {
+    width: 560px;
+    aspect-ratio: 16 / 9;
+    margin: 0;
+    border: none;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  h3 {
+    margin: 2rem 0 1rem;
+  }
+  .card-poster {
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  .actor-text {
+    padding: 5px;
+  }
+</style>
