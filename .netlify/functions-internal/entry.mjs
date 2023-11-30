@@ -1,10 +1,10 @@
 import * as adapter from '@astrojs/netlify/netlify-functions.js';
 import { renderers } from './renderers.mjs';
-import { manifest } from './manifest_265cafe6.mjs';
+import { manifest } from './manifest_1a6975e1.mjs';
 
 const _page0  = () => import('./chunks/generic_5498733b.mjs');
-const _page1  = () => import('./chunks/index_d7e191ad.mjs');
-const _page2  = () => import('./chunks/_id__1fe489d9.mjs');const pageMap = new Map([["node_modules/astro/dist/assets/endpoint/generic.js", _page0],["src/pages/index.astro", _page1],["src/pages/details/[id].astro", _page2]]);
+const _page1  = () => import('./chunks/index_462cca53.mjs');
+const _page2  = () => import('./chunks/_id__195b7c8d.mjs');const pageMap = new Map([["node_modules/astro/dist/assets/endpoint/generic.js", _page0],["src/pages/index.astro", _page1],["src/pages/details/[id].astro", _page2]]);
 const _manifest = Object.assign(manifest, {
 	pageMap,
 	renderers,
