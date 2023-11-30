@@ -63,7 +63,7 @@ export class GetData {
 
   static async movies() {
     const responseMovies = await fetch(
-      'https://api.themoviedb.org/3/movie/now_playing?language=es_MX&page=1',
+      'https://api.themoviedb.org/3/movie/now_playing?language=es-MX&page=1',
       this.options,
     );
   const { results: movies }: { results: Movie[] } = await responseMovies.json();

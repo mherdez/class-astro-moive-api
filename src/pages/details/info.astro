@@ -1,0 +1,29 @@
+---
+import CardDetail from '../../components/CardDetail.astro';
+import Layout from '../../layouts/Layout.astro';
+import { GetData } from '../../helpers/getData.ts';
+
+
+const url = new URL(Astro.request.url)
+console.log(url.toString())
+
+// const {id} = Astro.params
+
+// // DETALLE DE PELICULA DEL API
+// const data = await GetData.movie(id!)
+
+// // CASTING DE LA PELICULA DEL API
+// const cast = await GetData.cast(id!)
+
+// // VIDEOS
+// const videosTrailers = await GetData.videos(id!)
+---
+
+
+
+
+
+<Layout title="Api Movies Demo">
+    <h1>{}</h1>
+  <!-- <CardDetail data={data} cast={cast} videosTrailers={videosTrailers} /> -->
+</Layout>
